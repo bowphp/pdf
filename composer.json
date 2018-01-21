@@ -1,0 +1,16 @@
+{
+    "name": "papac/bow-dompdf",
+    "description": "The dompdf support for bow framework",
+    "type": "library",
+    "require": {
+        "dompdf/dompdf": "^0.8.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Franck Dakia",
+            "email": "dakiafranck@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
