@@ -3,6 +3,7 @@
 
 namespace Papac;
 
+use Dompdf\Options;
 
 class PDF
 {
@@ -10,11 +11,6 @@ class PDF
      * @var Dompdf
      */
     protected $dompdf;
-
-    /**
-     * @var Config
-     */
-    protected $config;
 
     /**
      * @var bool
@@ -40,10 +36,9 @@ class PDF
      * @param Dompdf $dompdf
      * @param Config $config
      */
-    public function __construct(Dompdf $dompdf, Config $config){
+    public function __construct(Dompdf $dompdf){
 
         $this->dompdf = $dompdf;
-        $this->config = $config;
     }
 
     /**
@@ -101,7 +96,7 @@ class PDF
      * 
      * @return $this
      */
-    public function loadHTML($string, $encoding = null)
+    public function html($string, $encoding = null)
     {
         $string = $this->convertEntities($string);
         $this->dompdf->loadHtml($string, $encoding);
@@ -117,7 +112,7 @@ class PDF
      * 
      * @return $this
      */
-    public function loadFile($file)
+    public function file($file)
     {
         $this->dompdf->loadHtmlFile($file);
         $this->rendered = false;
@@ -133,7 +128,7 @@ class PDF
      * 
      * @return $this
      */
-    public function loadView($view, $data = array())
+    public function view($view, $data = array())
     {
         $html = view($view, $data);
         
@@ -257,10 +252,10 @@ class PDF
      * @param Dompdf $dompdf
      * @param Config $config
      */
-    public static function configure(Dompdf $dompdf, Config $config)
+    public static function configure(Dompdf $dompdf)
     {
         if (is_null(static::$instance)) {
-            return static::$instance = new static($dompdf, $config);
+            return static::$instance = new static($dompdf);
         }
 
         return static::$instance;

@@ -3,20 +3,26 @@
 namespace Papac;
 
 use Dompdf\Dompdf;
-use Bow\Application\Services;
+use Bow\Application\Services as BowService;
 
-class PDFService extends Services
+class PDFService extends BowService
 {
-
     /**
      * Permet de créer le service
      *
      * @param Config $config
      */
     public function make(Config $config)
-    {
-        $dompdf = Dompdf();
-        PDF::configure($dompdf, $config);
+    {    
+        $cf = $config['dompdf'];
+
+        if (is_null($cf)) {
+            $cf = require __DIR__.'/../config/dompdf.php';
+        }
+        
+        $dompdf = Dompdf($cf);
+
+        PDF::configure($dompdf);
     }
 
     /**
