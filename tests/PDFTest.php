@@ -28,4 +28,35 @@ class PDFTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals($pdf->getPaper(), 'a4');
     }
+
+    public function testGetOrientation()
+    {
+        $domdpf = new Dompdf();
+        $pdf = PDF::configure($domdpf);
+
+        $this->assertEquals($pdf->getOrientation(), 'portrait');
+    }
+
+    public function testSetPaper()
+    {
+        $domdpf = new Dompdf();
+        $pdf = PDF::configure($domdpf);
+        $pdf->setPaper('a3', 'landscape');
+
+        $this->assertEquals($pdf->getOrientation(), 'landscape');
+        $this->assertEquals($pdf->getPaper(), 'a3');
+
+        $this->assertNotEquals($pdf->getOrientation(), 'portrait');
+        $this->assertNotEquals($pdf->getPaper(), 'a4');
+    }
+
+    public function testHtmlRender()
+    {
+        $domdpf = new Dompdf();
+        PDF::configure($domdpf);
+
+        $pdf = PDF::html('<h1>Hello world</h1>');
+
+        var_dump($pdf->output());
+    }
 }

@@ -11,27 +11,27 @@ class PDF
     /**
      * @var Dompdf
      */
-    protected $dompdf;
+    private $dompdf;
 
     /**
      * @var bool
      */
-    protected $rendered = false;
+    private $rendered = false;
 
     /**
      * @var string
      */
-    protected $orientation = 'portrait';
+    private $orientation = 'portrait';
     
     /**
      * @var string
      */
-    protected $paper = 'a4';
+    private $paper = 'a4';
     
     /**
      * @var PDF
      */
-    protected static $instance;
+    private static $instance;
 
     /**
      * PDF constructor
@@ -293,5 +293,10 @@ class PDF
         }
 
         throw new PDFException(sprint('%s method not exists', $method));
+    }
+
+    public function test()
+    {
+        return 'hello world';
     }
 }
