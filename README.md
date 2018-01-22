@@ -27,7 +27,7 @@ Dans le fichier `app/Kernel/Loader.php` du dossier `config`. Ajoutez le service 
 public function services()
 {
     /**
-     * Mettez ici vos service.
+     * Put here you service
      */
     return [
         \Papac\PDFService::class,
