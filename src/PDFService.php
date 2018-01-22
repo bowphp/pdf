@@ -15,9 +15,12 @@ class PDFService extends BowService
     public function make(Config $config)
     {    
         $cf = $config['dompdf'];
+        $r = require __DIR__.'/../config/dompdf.php';
 
         if (is_null($cf)) {
-            $cf = require __DIR__.'/../config/dompdf.php';
+            $cf = $r;
+        } else {
+            $cf = array_merge($r, $cf);
         }
         
         $dompdf = Dompdf($cf);

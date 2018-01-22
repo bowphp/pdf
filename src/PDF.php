@@ -276,7 +276,6 @@ class PDF
     /**
      * __callStatic
      * 
-     * 
      * @param string $method
      * @param array $args
      * 
