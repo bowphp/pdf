@@ -4,6 +4,7 @@
 namespace Papac;
 
 use Dompdf\Options;
+use Dompdf\Dompdf;
 
 class PDF
 {
