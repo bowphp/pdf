@@ -11,7 +11,7 @@ Installez une copie du package avec [composer](https://getcomposer.org).
 composer require papac/bow-dompdf
 ```
 
-### Configure
+### Configuration
 
 Vous pouvez utiliser directement le service fournir dans le package.
 
