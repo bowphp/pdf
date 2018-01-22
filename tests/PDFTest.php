@@ -49,14 +49,4 @@ class PDFTest extends \PHPUnit\Framework\TestCase
         $this->assertNotEquals($pdf->getOrientation(), 'portrait');
         $this->assertNotEquals($pdf->getPaper(), 'a4');
     }
-
-    public function testHtmlRender()
-    {
-        $domdpf = new Dompdf();
-        PDF::configure($domdpf);
-
-        $pdf = PDF::html('<h1>Hello world</h1>');
-
-        var_dump($pdf->output());
-    }
 }
