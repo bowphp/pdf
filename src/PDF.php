@@ -294,9 +294,4 @@ class PDF
 
         throw new PDFException(sprint('%s method not exists', $method));
     }
-
-    public function test()
-    {
-        return 'hello world';
-    }
 }
