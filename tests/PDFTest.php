@@ -26,6 +26,6 @@ class PDFTest extends \PHPUnit\Framework\TestCase
         $domdpf = new Dompdf();
         $pdf = PDF::configure($domdpf);
 
-        $this->assertEquals(PDF::getPaper(), 'a4');
+        $this->assertEquals($pdf->getPaper(), 'a4');
     }
 }

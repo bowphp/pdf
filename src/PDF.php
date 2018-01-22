@@ -21,12 +21,12 @@ class PDF
     /**
      * @var string
      */
-    protected $orientation;
+    protected $orientation = 'portrait';
     
     /**
      * @var string
      */
-    protected $paper;
+    protected $paper = 'a4';
     
     /**
      * @var PDF
@@ -34,8 +34,9 @@ class PDF
     protected static $instance;
 
     /**
+     * PDF constructor
+     * 
      * @param Dompdf $dompdf
-     * @param Config $config
      */
     public function __construct(Dompdf $dompdf){
 
@@ -78,7 +79,7 @@ class PDF
      * @param string $paper
      * @param string $orientation
      * 
-     * @return $this
+     * @return PDF
      */
     public function setPaper($paper, $orientation = 'portrait')
     {
@@ -95,7 +96,7 @@ class PDF
      * @param string $string
      * @param string $encoding Not used yet
      * 
-     * @return $this
+     * @return PDF
      */
     public function html($string, $encoding = null)
     {
@@ -111,7 +112,7 @@ class PDF
      *
      * @param string $file
      * 
-     * @return $this
+     * @return PDF
      */
     public function file($file)
     {
@@ -127,13 +128,13 @@ class PDF
      * @param string $view
      * @param array $data
      * 
-     * @return $this
+     * @return PDF
      */
     public function view($view, $data = array())
     {
         $html = view($view, $data);
         
-        return $this->loadHTML($html, $encoding);
+        return $this->html($html, $encoding);
     }
 
     /**
@@ -168,8 +169,8 @@ class PDF
     /**
      * Save the PDF to a file
      *
-     * @param $filename
-     * @return static
+     * @param string $filename
+     * @return PDF
      */
     public function save($filename)
     {
@@ -189,9 +190,9 @@ class PDF
         $output = $this->output();
 
         return new Response($output, 200, array(
-                'Content-Type' => 'application/pdf',
-                'Content-Disposition' =>  'attachment; filename="'.$filename.'"'
-            ));
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' =>  'attachment; filename="'.$filename.'"'
+        ));
     }
 
     /**
@@ -251,7 +252,7 @@ class PDF
      * Configure pdf class
      * 
      * @param Dompdf $dompdf
-     * @param Config $config
+     * @return PDF
      */
     public static function configure(Dompdf $dompdf)
     {
