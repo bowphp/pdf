@@ -39,6 +39,3 @@ public function services()
 ## Auteur
 
 Dakia Franck
-
-
-
