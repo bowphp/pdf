@@ -19,28 +19,35 @@ class PDFTest extends \PHPUnit\Framework\TestCase
         $pdf = PDF::configure($domdpf);
 
         $this->assertInstanceOf(PDF::class, $pdf);
+
+        return $pdf;
     }
 
-    public function testGetPaper()
+    /**
+     * @depends testConfigurationViaConfigureMethod
+     */
+    public function testGetPaper(PDF $pdf)
     {
-        $domdpf = new Dompdf();
-        $pdf = PDF::configure($domdpf);
-
         $this->assertEquals($pdf->getPaper(), 'a4');
+        
+        return $pdf;
     }
 
-    public function testGetOrientation()
+    /**
+     * @depends testGetPaper
+     */
+    public function testGetOrientation(PDF $pdf)
     {
-        $domdpf = new Dompdf();
-        $pdf = PDF::configure($domdpf);
-
         $this->assertEquals($pdf->getOrientation(), 'portrait');
+
+        return $pdf;
     }
 
-    public function testSetPaper()
+    /**
+     * @depends testGetOrientation
+     */
+    public function testSetPaper(PDF $pdf)
     {
-        $domdpf = new Dompdf();
-        $pdf = PDF::configure($domdpf);
         $pdf->setPaper('a3', 'landscape');
 
         $this->assertEquals($pdf->getOrientation(), 'landscape');
