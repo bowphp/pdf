@@ -13,8 +13,6 @@ composer require papac/bow-dompdf
 
 ### Configuration
 
-Vous pouvez utiliser directement le service fournir dans le package.
-
 Dans le fichier `Loader.php` du dossier `app/Kernel`. Ajoutez le service comme suit:
 
 
