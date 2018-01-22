@@ -1,12 +1,12 @@
 ## The dompdf support for bow framework
 
-Ce package vous permettra de manipuler `dompdf/dompdf` via un wrapper simple et intuitif.
+Ce package vous permettra de manipuler `dompdf/dompdf` via un _wrapper_ simple et intuitif.
 
 ## Usage
 
 Installez une copie du package avec [composer](https://getcomposer.org).
 
-### Install
+### Installation
 ```
 composer require papac/bow-dompdf
 ```
@@ -36,7 +36,7 @@ public function services()
 }
 ```
 
-## Author
+## Auteur
 
 Dakia Franck
 
