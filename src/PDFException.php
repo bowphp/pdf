@@ -2,4 +2,7 @@
 
 namespace Papac;
 
-class PDFException extends \PDFException {}
+class PDFException extends \ErrorException
+{
+
+}

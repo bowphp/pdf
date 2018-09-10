@@ -3,7 +3,8 @@
 namespace Papac;
 
 use Dompdf\Dompdf;
-use Bow\Application\Services as BowService;
+use Bow\Config\Config;
+use Bow\Application\Service as BowService;
 
 class PDFService extends BowService
 {
@@ -13,8 +14,9 @@ class PDFService extends BowService
      * @param Config $config
      */
     public function make(Config $config)
-    {    
+    {
         $cf = $config['dompdf'];
+
         $r = require __DIR__.'/../config/dompdf.php';
 
         if (is_null($cf)) {
@@ -23,9 +25,11 @@ class PDFService extends BowService
             $cf = array_merge($r, $cf);
         }
         
-        $dompdf = Dompdf($cf);
+        $this->app->capsule('dompdf', function () use ($cf) {
+            $dompdf = Dompdf($cf);
 
-        PDF::configure($dompdf);
+            return PDF::configure($dompdf);
+        });
     }
 
     /**
@@ -35,6 +39,6 @@ class PDFService extends BowService
      */
     public function start()
     {
-        //
+        $this->app->capsule('dompdf');
     }
 }

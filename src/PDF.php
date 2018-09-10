@@ -1,10 +1,9 @@
 <?php
 
-
 namespace Papac;
 
-use Dompdf\Options;
 use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class PDF
 {
@@ -35,10 +34,11 @@ class PDF
 
     /**
      * PDF constructor
-     * 
+     *
      * @param Dompdf $dompdf
      */
-    public function __construct(Dompdf $dompdf){
+    public function __construct(Dompdf $dompdf)
+    {
 
         $this->dompdf = $dompdf;
     }
@@ -55,7 +55,7 @@ class PDF
 
     /**
      * get paper type
-     * 
+     *
      * @return string
      */
     public function getPaper()
@@ -65,7 +65,7 @@ class PDF
 
     /**
      * Get orientation
-     * 
+     *
      * @return string
      */
     public function getOrientation()
@@ -78,13 +78,15 @@ class PDF
      *
      * @param string $paper
      * @param string $orientation
-     * 
+     *
      * @return PDF
      */
     public function setPaper($paper, $orientation = 'portrait')
     {
         $this->paper = $paper;
+
         $this->orientation = $orientation;
+
         $this->dompdf->setPaper($paper, $orientation);
 
         return $this;
@@ -95,13 +97,15 @@ class PDF
      *
      * @param string $string
      * @param string $encoding Not used yet
-     * 
+     *
      * @return PDF
      */
     public function html($string, $encoding = null)
     {
         $string = $this->convertEntities($string);
+
         $this->dompdf->loadHtml($string, $encoding);
+
         $this->rendered = false;
         
         return $this;
@@ -111,12 +115,13 @@ class PDF
      * Load a HTML file
      *
      * @param string $file
-     * 
+     *
      * @return PDF
      */
     public function file($file)
     {
         $this->dompdf->loadHtmlFile($file);
+
         $this->rendered = false;
         
         return $this;
@@ -127,7 +132,7 @@ class PDF
      *
      * @param string $view
      * @param array $data
-     * 
+     *
      * @return PDF
      */
     public function view($view, $data = array())
@@ -141,12 +146,13 @@ class PDF
      * Set/Change an option in DomPdf
      *
      * @param array $options
-     * 
+     *
      * @return $this
      */
     public function setOptions(array $options)
     {
         $options = new Options($options);
+
         $this->dompdf->setOptions($options);
 
         return $this;
@@ -159,7 +165,7 @@ class PDF
      */
     public function output()
     {
-        if(!$this->rendered){
+        if (!$this->rendered) {
             $this->render();
         }
 
@@ -183,13 +189,12 @@ class PDF
      * Make the PDF downloadable by the user
      *
      * @param string $filename
-     * @return \Bow\Http\Response
      */
-    public function download($filename = 'document.pdf' )
+    public function download($filename = 'document.pdf')
     {
         $output = $this->output();
 
-        return new Response($output, 200, array(
+        response()->download($output, $filename, 200, array(
             'Content-Type' => 'application/pdf',
             'Content-Disposition' =>  'attachment; filename="'.$filename.'"'
         ));
@@ -201,11 +206,11 @@ class PDF
      * @param string $filename
      * @return \Bow\Http\Response
      */
-    public function stream($filename = 'document.pdf' )
+    public function stream($filename = 'document.pdf')
     {
         $output = $this->output();
 
-        return new Response($output, 200, array(
+        return response($output, 200, array(
             'Content-Type' => 'application/pdf',
             'Content-Disposition' =>  'inline; filename="'.$filename.'"',
         ));
@@ -216,7 +221,7 @@ class PDF
      */
     protected function render()
     {
-        if(!$this->dompdf){
+        if (!$this->dompdf) {
             throw new Exception('DOMPDF not created yet');
         }
 
@@ -229,9 +234,9 @@ class PDF
 
     /**
      * Converte Special entities
-     * 
+     *
      * @param string $subject
-     * 
+     *
      * @return string
      */
     protected function convertEntities($subject)
@@ -241,7 +246,7 @@ class PDF
             '£' => '&pound;',
         );
 
-        foreach($entities as $search => $replace) {
+        foreach ($entities as $search => $replace) {
             $subject = str_replace($search, $replace, $subject);
         }
         
@@ -250,7 +255,7 @@ class PDF
 
     /**
      * Configure pdf class
-     * 
+     *
      * @param Dompdf $dompdf
      * @return PDF
      */
@@ -265,7 +270,7 @@ class PDF
 
     /**
      * Get PDF instance
-     * 
+     *
      * @return PDF
      */
     public static function getInstance()
@@ -275,11 +280,11 @@ class PDF
 
     /**
      * __callStatic
-     * 
+     *
      * @param string $method
      * @param array $args
-     * 
      * @return mixed
+     * @throws PDFException
      */
     public static function __callStatic($method, $args)
     {
@@ -291,6 +296,6 @@ class PDF
             return call_user_func_array([static::$instance, $method], $args);
         }
 
-        throw new PDFException(sprint('%s method not exists', $method));
+        throw new PDFException(sprintf('%s method not exists', $method));
     }
 }
