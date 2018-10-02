@@ -22,15 +22,15 @@ Dans le fichier `Loader.php` du dossier `app/Kernel`. Ajoutez le service comme s
  *
  * @return array
  */
-public function services()
+public function configurations()
 {
-    /**
-     * Put here you service
-     */
-    return [
-        \Papac\PDFService::class,
-        // other
-    ];
+  /**
+   * Put here you service
+   */
+  return [
+  	\Papac\PDFConfiguration::class,
+      // other
+  ];
 }
 ```
 
