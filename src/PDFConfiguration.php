@@ -12,6 +12,7 @@ class PDFConfiguration extends Configuration
      * Permet de créer le service
      *
      * @param Loader $config
+     * @return  void
      */
     public function create(Loader $config)
     {
@@ -37,7 +38,7 @@ class PDFConfiguration extends Configuration
      *
      * @return mixed
      */
-    public function start()
+    public function run()
     {
         $this->container->make('dompdf');
     }

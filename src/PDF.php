@@ -8,26 +8,36 @@ use Dompdf\Options;
 class PDF
 {
     /**
+     * The Dompdf instance
+     *
      * @var Dompdf
      */
     private $dompdf;
 
     /**
+     * The rendering indicator Flag
+     *
      * @var bool
      */
     private $rendered = false;
 
     /**
+     * The paper orientation
+     *
      * @var string
      */
     private $orientation = 'portrait';
     
     /**
+     * The paper type
+     *
      * @var string
      */
     private $paper = 'a4';
     
     /**
+     * The PDF instance
+     *
      * @var PDF
      */
     private static $instance;
@@ -36,6 +46,8 @@ class PDF
      * PDF constructor
      *
      * @param Dompdf $dompdf
+     *
+     * @return void
      */
     public function __construct(Dompdf $dompdf)
     {
@@ -54,7 +66,7 @@ class PDF
     }
 
     /**
-     * get paper type
+     * Get paper type
      *
      * @return string
      */
@@ -96,7 +108,7 @@ class PDF
      * Load a HTML string
      *
      * @param string $string
-     * @param string $encoding Not used yet
+     * @param string $encoding
      *
      * @return PDF
      */
@@ -204,6 +216,7 @@ class PDF
      * Return a response with the PDF to show in the browser
      *
      * @param string $filename
+     *
      * @return \Bow\Http\Response
      */
     public function stream($filename = 'document.pdf')
@@ -218,6 +231,8 @@ class PDF
 
     /**
      * Render the PDF
+     *
+     * @return void
      */
     protected function render()
     {
@@ -257,6 +272,7 @@ class PDF
      * Configure pdf class
      *
      * @param Dompdf $dompdf
+     *
      * @return PDF
      */
     public static function configure(Dompdf $dompdf)
@@ -283,6 +299,7 @@ class PDF
      *
      * @param string $method
      * @param array $args
+     *
      * @return mixed
      * @throws PDFException
      */
