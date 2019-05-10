@@ -37,7 +37,7 @@ class PDFConfiguration extends Configuration
      *
      * @return mixed
      */
-    public function start()
+    public function run()
     {
         $this->container->make('dompdf');
     }
