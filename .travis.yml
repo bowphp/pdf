@@ -13,7 +13,6 @@ cache:
 
 php:
   - 7.0
-  - nightly
 
 install:
   - composer install --prefer-dist
