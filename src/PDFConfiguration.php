@@ -12,6 +12,7 @@ class PDFConfiguration extends Configuration
      * Permet de créer le service
      *
      * @param Loader $config
+     * @return  void
      */
     public function create(Loader $config)
     {
