@@ -1,9 +1,9 @@
 {
-    "name": "papac/bow-dompdf",
+    "name": "bowphp/dompdf",
     "description": "The dompdf support for bow framework",
     "type": "library",
     "require": {
-        "bowphp/framework": "^3.*",
+        "bowphp/framework": "^4.*",
         "dompdf/dompdf": "^0.8.0"
     },
     "license": "MIT",
@@ -18,7 +18,7 @@
             "Papac\\": "src"            
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require-dev": {
         "phpunit/phpunit": "^6"
     }
