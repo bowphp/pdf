@@ -28,7 +28,7 @@ public function configurations()
    * Put here you service
    */
   return [
-  	\Bow\PDFConfiguration::class,
+    \Bow\PDFConfiguration::class,
       // other
   ];
 }

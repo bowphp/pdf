@@ -1,24 +1,21 @@
 <?php
 
-namespace Papac;
+namespace Bow;
 
 use Dompdf\Dompdf;
-use Bow\Configuration\Loader;
+use Bow\Configuration\Loader as Config;
 use Bow\Configuration\Configuration;
 
 class PDFConfiguration extends Configuration
 {
     /**
-     * Permet de créer le service
-     *
-     * @param Loader $config
-     * @return  void
+     * {@inheritDoc}
      */
-    public function create(Loader $config)
+    public function create(Config $config)
     {
-        $cf = $config['dompdf'];
+        $cf = (array) ($config['pdf'] ?? $config['dompdf']);
 
-        $r = require __DIR__.'/../config/dompdf.php';
+        $r = require __DIR__.'/../config/pdf.php';
 
         if (is_null($cf)) {
             $cf = $r;
@@ -34,9 +31,7 @@ class PDFConfiguration extends Configuration
     }
 
     /**
-     * Permet de lancer le service
-     *
-     * @return mixed
+     * {@inheritDoc}
      */
     public function run()
     {

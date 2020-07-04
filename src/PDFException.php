@@ -1,8 +1,8 @@
 <?php
 
-namespace Papac;
+namespace Bow;
 
-class PDFException extends \ErrorException
+class PDFException extends \Exception
 {
 
 }

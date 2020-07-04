@@ -3,7 +3,6 @@
     "description": "The dompdf support for bow framework",
     "type": "library",
     "require": {
-        "bowphp/framework": "^4.*",
         "dompdf/dompdf": "^0.8.0"
     },
     "license": "MIT",
@@ -15,11 +14,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Papac\\": "src"            
+            "Bow\\": "src"            
         }
     },
     "minimum-stability": "stable",
     "require-dev": {
-        "phpunit/phpunit": "^6"
+        "phpunit/phpunit": "^6",
+        "bowphp/framework": "4.2.*"
     }
 }

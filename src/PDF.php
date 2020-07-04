@@ -1,6 +1,6 @@
 <?php
 
-namespace Papac;
+namespace Bow;
 
 use Dompdf\Dompdf;
 use Dompdf\Options;

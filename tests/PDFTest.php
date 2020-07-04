@@ -1,7 +1,7 @@
 <?php
 
 use Dompdf\Dompdf;
-use Papac\PDF;
+use Bow\PDF;
 
 class PDFTest extends \PHPUnit\Framework\TestCase
 {
