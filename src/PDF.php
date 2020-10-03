@@ -46,12 +46,10 @@ class PDF
      * PDF constructor
      *
      * @param Dompdf $dompdf
-     *
      * @return void
      */
     public function __construct(Dompdf $dompdf)
     {
-
         $this->dompdf = $dompdf;
     }
 
@@ -90,7 +88,6 @@ class PDF
      *
      * @param string $paper
      * @param string $orientation
-     *
      * @return PDF
      */
     public function setPaper($paper, $orientation = 'portrait')
@@ -109,7 +106,6 @@ class PDF
      *
      * @param string $string
      * @param string $encoding
-     *
      * @return PDF
      */
     public function html($string, $encoding = null)
@@ -127,7 +123,6 @@ class PDF
      * Load a HTML file
      *
      * @param string $file
-     *
      * @return PDF
      */
     public function file($file)
@@ -144,7 +139,6 @@ class PDF
      *
      * @param string $view
      * @param array $data
-     *
      * @return PDF
      */
     public function view($view, $data = array())
@@ -158,8 +152,7 @@ class PDF
      * Set/Change an option in DomPdf
      *
      * @param array $options
-     *
-     * @return $this
+     * @return PDF
      */
     public function setOptions(array $options)
     {
@@ -206,7 +199,7 @@ class PDF
     {
         $output = $this->output();
 
-        response()->download($output, $filename, 200, array(
+        return response()->download($output, $filename, 200, array(
             'Content-Type' => 'application/pdf',
             'Content-Disposition' =>  'attachment; filename="'.$filename.'"'
         ));
@@ -216,7 +209,6 @@ class PDF
      * Return a response with the PDF to show in the browser
      *
      * @param string $filename
-     *
      * @return \Bow\Http\Response
      */
     public function stream($filename = 'document.pdf')
@@ -251,7 +243,6 @@ class PDF
      * Converte Special entities
      *
      * @param string $subject
-     *
      * @return string
      */
     protected function convertEntities($subject)
@@ -272,7 +263,6 @@ class PDF
      * Configure pdf class
      *
      * @param Dompdf $dompdf
-     *
      * @return PDF
      */
     public static function configure(Dompdf $dompdf)
@@ -286,7 +276,6 @@ class PDF
 
     /**
      * Get PDF instance
-     *
      * @return PDF
      */
     public static function getInstance()
@@ -299,7 +288,6 @@ class PDF
      *
      * @param string $method
      * @param array $args
-     *
      * @return mixed
      * @throws PDFException
      */
