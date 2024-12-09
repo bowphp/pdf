@@ -2,6 +2,7 @@
 
 namespace Bow;
 
+use Exception;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -145,7 +146,7 @@ class PDF
     {
         $html = view($view, $data);
         
-        return $this->html($html, $encoding);
+        return $this->html($html, 'UTF-8');
     }
 
     /**
@@ -199,10 +200,10 @@ class PDF
     {
         $output = $this->output();
 
-        return response()->download($output, $filename, 200, array(
+        return response()->download($output, $filename, [
             'Content-Type' => 'application/pdf',
             'Content-Disposition' =>  'attachment; filename="'.$filename.'"'
-        ));
+        ]);
     }
 
     /**
@@ -215,10 +216,10 @@ class PDF
     {
         $output = $this->output();
 
-        return response($output, 200, array(
+        return response($output, 200, [
             'Content-Type' => 'application/pdf',
             'Content-Disposition' =>  'inline; filename="'.$filename.'"',
-        ));
+        ]);
     }
 
     /**
@@ -247,10 +248,10 @@ class PDF
      */
     protected function convertEntities($subject)
     {
-        $entities = array(
+        $entities = [
             '€' => '&#0128;',
             '£' => '&pound;',
-        );
+        ];
 
         foreach ($entities as $search => $replace) {
             $subject = str_replace($search, $replace, $subject);

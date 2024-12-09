@@ -16,6 +16,7 @@ class PDFTest extends \PHPUnit\Framework\TestCase
     public function testConfigurationViaConfigureMethod()
     {
         $domdpf = new Dompdf();
+
         $pdf = PDF::configure($domdpf);
 
         $this->assertInstanceOf(PDF::class, $pdf);

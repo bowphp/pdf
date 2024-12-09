@@ -3,28 +3,28 @@
 namespace Bow;
 
 use Dompdf\Dompdf;
-use Bow\Configuration\Loader as Config;
 use Bow\Configuration\Configuration;
+use Bow\Configuration\Loader as Config;
 
 class PDFConfiguration extends Configuration
 {
     /**
      * {@inheritDoc}
      */
-    public function create(Config $config)
+    public function create(Config $config): void
     {
-        $cf = (array) ($config['pdf'] ?? $config['dompdf']);
+        $config = (array) ($config['pdf'] ?? $config['dompdf']);
 
-        $r = require __DIR__.'/../config/pdf.php';
+        $base_config = require __DIR__.'/../config/pdf.php';
 
-        if (is_null($cf)) {
-            $cf = $r;
+        if (is_null($config)) {
+            $config = $base_config;
         } else {
-            $cf = array_merge($r, $cf);
+            $config = array_merge($base_config, $config);
         }
-        
-        $this->container->bind('dompdf', function () use ($cf) {
-            $dompdf = Dompdf($cf);
+
+        $this->container->bind('dompdf', function () use ($config) {
+            $dompdf = new Dompdf($config);
 
             return PDF::configure($dompdf);
         });
@@ -33,7 +33,7 @@ class PDFConfiguration extends Configuration
     /**
      * {@inheritDoc}
      */
-    public function run()
+    public function run(): void
     {
         $this->container->make('dompdf');
     }

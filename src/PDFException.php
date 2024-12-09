@@ -2,7 +2,4 @@
 
 namespace Bow;
 
-class PDFException extends \Exception
-{
-
-}
+class PDFException extends \Exception {}
