@@ -1,5 +1,5 @@
 {
-    "name": "bowphp/dompdf",
+    "name": "bowphp/pdf",
     "description": "The dompdf support for bow framework",
     "type": "library",
     "require": {

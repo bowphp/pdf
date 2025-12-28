@@ -23,7 +23,7 @@ class PDFConfiguration extends Configuration
             $config = array_merge($base_config, $config);
         }
 
-        $this->container->bind('dompdf', function () use ($config) {
+        $this->container->bind('pdf', function () use ($config) {
             $dompdf = new Dompdf($config);
 
             return PDF::configure($dompdf);

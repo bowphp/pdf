@@ -3,6 +3,7 @@
 namespace Bow;
 
 use Exception;
+use Bow\View\View;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -126,7 +127,7 @@ class PDF
      * @param string $file
      * @return PDF
      */
-    public function file($file)
+    public function file(string $file)
     {
         $this->dompdf->loadHtmlFile($file);
 
@@ -142,10 +143,10 @@ class PDF
      * @param array $data
      * @return PDF
      */
-    public function view($view, $data = array())
+    public function view(string $view, array $data = array())
     {
-        $html = view($view, $data);
-        
+        $html = View::parse($view, $data)->getContent();
+
         return $this->html($html, 'UTF-8');
     }
 
@@ -179,24 +180,11 @@ class PDF
     }
 
     /**
-     * Save the PDF to a file
-     *
-     * @param string $filename
-     * @return PDF
-     */
-    public function save($filename)
-    {
-        $this->files->put($filename, $this->output());
-
-        return $this;
-    }
-
-    /**
      * Make the PDF downloadable by the user
      *
      * @param string $filename
      */
-    public function download($filename = 'document.pdf')
+    public function download(string $filename = 'document.pdf')
     {
         $output = $this->output();
 
