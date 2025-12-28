@@ -1,6 +1,6 @@
 <?php
 
-namespace Bow;
+namespace Bow\Pdf;
 
 use Dompdf\Dompdf;
 use Bow\Configuration\Configuration;

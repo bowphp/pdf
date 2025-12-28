@@ -1,6 +1,9 @@
 # The dompdf support for bow framework
 
-Ce package vous permettra de manipuler `dompdf/dompdf` via un _wrapper_ simple et intuitif. <a href="https://travis-ci.org/papac/bow-dompdf" title="Travis branch"><img src="https://img.shields.io/travis/papac/bow-dompdf/master.svg?style=flat-square"/></a>
+Ce package vous permettra de manipuler `dompdf/dompdf` via un _wrapper_ simple et intuitif.
+
+[![Build Status](https://img.shields.io/travis/bowphp/pdf/main.svg?style=flat-square)](https://travis-ci.org/bowphp/pdf)
+![Build Status](https://github.com/bowphp/pdf/actions/workflows/tests.yml/badge.svg)
 
 ## Usage
 
@@ -28,7 +31,7 @@ public function configurations()
    * Put here you service
    */
   return [
-    \Bow\PDFConfiguration::class,
+    \Bow\Pdf\PDFConfiguration::class,
       // other
   ];
 }
@@ -40,9 +43,3 @@ Thank you for considering contributing to Bow Framework! The contribution guide 
 
 - [Franck DAKIA](https://github.com/papac)
 - [Thank's collaborators](https://github.com/bowphp/pdf/graphs/contributors)
-
-## Contact
-
-[papac@bowphp.com](mailto:papac@bowphp.com) - [@franck_dakia](https://twitter.com/franck_dakia)
-
-**Please, if there is a bug on the project please contact me by email or leave me a message on the [slack](https://bowphp.slack.com). or [join us on slask](https://join.slack.com/t/bowphp/shared_invite/enQtNzMxOTQ0MTM2ODM5LTQ3MWQ3Mzc1NDFiNDYxMTAyNzBkNDJlMTgwNDJjM2QyMzA2YTk4NDYyN2NiMzM0YTZmNjU1YjBhNmJjZThiM2Q)**

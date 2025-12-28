@@ -1,5 +1,5 @@
 <?php
 
-namespace Bow;
+namespace Bow\Pdf;
 
 class PDFException extends \Exception {}

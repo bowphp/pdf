@@ -1,6 +1,6 @@
 <?php
 
-namespace Bow;
+namespace Bow\Pdf;
 
 use Exception;
 use Bow\View\View;
